@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #a855f7;
+    --color-secondary: #6366f1;
+    --color-accent: #d946ef;
+    --neon-glow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply antialiased text-gray-100;
+    background-color: #020617; /* dark-950 value */
+    background-image: 
+      radial-gradient(ellipse at top, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  }
+
+  ::selection {
+    @apply bg-primary-500 bg-opacity-30 text-primary-200;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #0f172a; /* dark-900 value */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-600 bg-opacity-50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+}
+
+@layer components {
+  /* Buttons with synthwave style */
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center relative overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary-500 to-accent-500 text-white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-400 text-primary-300 bg-transparent backdrop-blur-sm;
+    box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1);
+  }
+
+  .btn-outline:hover {
+    @apply border-primary-300 backdrop-blur-sm;
+    background-color: rgba(168, 85, 247, 0.1);
+    box-shadow: 
+      inset 0 0 30px rgba(168, 85, 247, 0.2),
+      0 0 20px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Cards with glass morphism */
+  .card {
+    @apply backdrop-blur-lg rounded-2xl border border-primary-500 border-opacity-20;
+    background-color: rgba(15, 23, 42, 0.5); /* dark-900/50 */
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .card:hover {
+    @apply border-primary-500 border-opacity-40;
+    box-shadow: 
+      0 8px 32px rgba(168, 85, 247, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient text effects */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-subtle {
+    @apply bg-gradient-to-r from-primary-300 to-secondary-300 bg-clip-text text-transparent;
+  }
+
+  /* Neon glow effects */
+  .neon-glow {
+    text-shadow: 
+      0 0 10px rgba(168, 85, 247, 0.8),
+      0 0 20px rgba(168, 85, 247, 0.6),
+      0 0 30px rgba(168, 85, 247, 0.4);
+  }
+
+  .neon-glow-sm {
+    text-shadow: 
+      0 0 5px rgba(168, 85, 247, 0.8),
+      0 0 10px rgba(168, 85, 247, 0.6);
+  }
+
+  /* Grid background pattern */
+  .grid-background {
+    background-image: 
+      linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
