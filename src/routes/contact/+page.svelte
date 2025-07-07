@@ -109,14 +109,6 @@ ${formData.message}
 			actionText: 'Send Email'
 		},
 		{
-			icon: 'phone',
-			title: 'Phone',
-			subtitle: '(949) 652-0986',
-			description: 'Available for urgent consultations',
-			action: 'tel:(949) 652-0986',
-			actionText: 'Call Now'
-		},
-		{
 			icon: 'linkedin',
 			title: 'LinkedIn',
 			subtitle: 'Michael Healy',
@@ -183,7 +175,7 @@ ${formData.message}
 		
 		<!-- Contact Methods -->
 		<section class="mb-16">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 				{#each contactMethods as method, i}
 					<div class="card p-6 text-center group hover:transform hover:scale-105 transition-all duration-300"
 					     style="animation: fadeIn 0.5s ease-out {i * 0.1}s both">
@@ -191,10 +183,6 @@ ${formData.message}
 							{#if method.icon === 'email'}
 								<svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-								</svg>
-							{:else if method.icon === 'phone'}
-								<svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
 								</svg>
 							{:else if method.icon === 'linkedin'}
 								<svg class="w-6 h-6 text-primary-400" fill="currentColor" viewBox="0 0 24 24">
@@ -355,10 +343,6 @@ ${formData.message}
 								<div class="flex items-center">
 									<div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
 									<span class="text-sm text-gray-300">Usually within 24 hours</span>
-								</div>
-								<div class="flex items-center">
-									<div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
-									<span class="text-sm text-gray-300">Urgent requests: Same day</span>
 								</div>
 								<div class="flex items-center">
 									<div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
