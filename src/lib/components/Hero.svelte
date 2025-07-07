@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { base } from "$app/paths";
 
     let typedText = "";
     const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
@@ -96,13 +97,13 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/projects" class="btn btn-primary group">
+                <a href="{base}/projects" class="btn btn-primary group">
                     <span class="relative z-10">View My Projects</span>
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-accent-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
                     ></div>
                 </a>
-                <a href="/contact" class="btn btn-outline"> Get In Touch </a>
+                <a href="{base}/contact" class="btn btn-outline"> Get In Touch </a>
             </div>
         </div>
     </div>

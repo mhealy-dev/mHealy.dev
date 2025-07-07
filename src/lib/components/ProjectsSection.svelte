@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths";
 	// This will be populated from the backend API
 	const projects = [
 		{
@@ -88,7 +89,7 @@
 		</div>
 		
 		<div class="text-center mt-12">
-			<a href="/projects" class="btn btn-primary">
+			<a href="{base}/projects" class="btn btn-primary">
 				View All Projects
 			</a>
 		</div>

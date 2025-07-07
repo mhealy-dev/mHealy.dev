@@ -1,11 +1,14 @@
 # GitHub Pages Deployment Guide
 
+Your portfolio is now fully configured for GitHub Pages deployment at: `https://mhealy-dev.github.io/mHealy.dev/`
+
 ## Changes Made for GitHub Pages Compatibility
 
 ### 1. Static Site Generation
 - Changed from `@sveltejs/adapter-auto` to `@sveltejs/adapter-static`
 - Added `export const prerender = true` to force static generation
 - Configured to build static files to `build/` directory
+- Added base path configuration for GitHub Pages subdirectory (`/mHealy.dev`)
 
 ### 2. API Routes Removed
 - Removed `/api/*` routes that required server-side functionality
@@ -21,6 +24,11 @@
 - Removed server-side Puppeteer PDF generation
 - Now uses client-side jsPDF for resume downloads
 - Maintains professional formatting optimized for ATS
+
+### 5. URL Structure Updates
+- All internal links now use the `base` path from `$app/paths`
+- URLs will work correctly with GitHub Pages subdirectory structure
+- Navigation, buttons, and links automatically adapt to deployment environment
 
 ## GitHub Repository Setup
 
