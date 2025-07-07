@@ -9,8 +9,6 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "backend:dev": "cd backend && go run cmd/main.go",
-    "backend:build": "cd backend && go build -o ../dist/server cmd/main.go",
     "workers:dev": "wrangler dev .svelte-kit/cloudflare",
     "workers:preview": "npm run build && wrangler dev .svelte-kit/cloudflare",
     "deploy": "npm run build && wrangler deploy"
@@ -18,15 +16,14 @@
   "keywords": [
     "portfolio",
     "svelte",
-    "go",
-    "tailwind"
+    "tailwind",
+    "cloudflare-workers"
   ],
   "author": "Michael Healy",
   "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250705.0",
-    "@sveltejs/adapter-auto": "^6.0.1",
     "@sveltejs/adapter-cloudflare": "^7.0.4",
     "@sveltejs/kit": "^2.22.2",
     "@sveltejs/vite-plugin-svelte": "^5.1.0",
@@ -42,9 +39,7 @@
     "wrangler": "^4.23.0"
   },
   "dependencies": {
-    "@sveltejs/adapter-static": "^3.0.8",
     "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.1",
-    "puppeteer": "^24.11.2"
+    "jspdf": "^3.0.1"
   }
 }
