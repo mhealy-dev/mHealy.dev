@@ -50,20 +50,30 @@
 		submitMessage = '';
 		
 		try {
-			const response = await fetch('/api/contact', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
+			// For GitHub Pages deployment, redirect to mailto with form data
+			const subject = encodeURIComponent(`Portfolio Contact: ${formData.subject}`);
+			const body = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'Not specified'}
+Subject: ${formData.subject}
+Budget: ${formData.budget || 'Not specified'}
+Timeline: ${formData.timeline || 'Not specified'}
+
+Message:
+${formData.message}
+			`);
 			
-			const result = await response.json();
+			const mailtoUrl = `mailto:mhealy.dev@gmail.com?subject=${subject}&body=${body}`;
 			
-			if (response.ok) {
-				messageType = 'success';
-				submitMessage = 'Message sent successfully! I\'ll get back to you within 24 hours.';
-				// Reset form
+			// Open default email client
+			window.location.href = mailtoUrl;
+			
+			messageType = 'success';
+			submitMessage = 'Your email client should open with a pre-filled message. Please send the email to complete your contact request.';
+			
+			// Reset form after a delay
+			setTimeout(() => {
 				formData = {
 					name: '',
 					email: '',
@@ -73,20 +83,18 @@
 					budget: '',
 					timeline: ''
 				};
-			} else {
-				messageType = 'error';
-				submitMessage = result.message || 'Failed to send message. Please try again.';
-			}
+			}, 2000);
+			
 		} catch (error) {
 			messageType = 'error';
-			submitMessage = 'An error occurred. Please try again later or contact me directly via email.';
+			submitMessage = 'An error occurred. Please contact me directly via email at mhealy.dev@gmail.com';
 		} finally {
 			isSubmitting = false;
-			// Clear message after 5 seconds
+			// Clear message after 8 seconds
 			setTimeout(() => {
 				submitMessage = '';
 				messageType = '';
-			}, 5000);
+			}, 8000);
 		}
 	}
 	

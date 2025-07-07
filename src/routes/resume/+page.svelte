@@ -10,25 +10,11 @@
         isGeneratingPDF = true;
 
         try {
-            // Try server-side generation first
-            const response = await fetch("/api/resume/download");
+            // Use client-side generation for GitHub Pages
+            const { jsPDF } = await import("jspdf");
 
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "Michael_Healy_Resume.pdf";
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } else {
-                // Fallback to client-side generation
-                const { jsPDF } = await import("jspdf");
-
-                // Create a clean PDF optimized for ATS
-                const pdf = new jsPDF("p", "pt", "letter");
+            // Create a clean PDF optimized for ATS
+            const pdf = new jsPDF("p", "pt", "letter");
 
                 // Set fonts
                 pdf.setFont("helvetica");
@@ -183,8 +169,7 @@
                     yPos += 16;
                 });
 
-                pdf.save("Michael_Healy_Resume.pdf");
-            }
+            pdf.save("Michael_Healy_Resume.pdf");
         } catch (error) {
             console.error("PDF generation error:", error);
             alert("Unable to generate PDF. Please try again later.");
