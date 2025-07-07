@@ -59,23 +59,52 @@ func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
 }
 
 type ContactForm struct {
-	Name    string `json:"name"`
-	Email   string `json:"email"`
-	Message string `json:"message"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Company  string `json:"company"`
+	Subject  string `json:"subject"`
+	Message  string `json:"message"`
+	Budget   string `json:"budget"`
+	Timeline string `json:"timeline"`
 }
 
 func (s *Server) handleContact(w http.ResponseWriter, r *http.Request) {
 	var form ContactForm
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Invalid request format",
+		})
 		return
 	}
 	
-	// TODO: Implement email sending logic
-	log.Printf("Contact form received: %+v", form)
+	// Validate required fields
+	if form.Name == "" || form.Email == "" || form.Subject == "" || form.Message == "" {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Missing required fields",
+		})
+		return
+	}
+	
+	// Log the submission (in production, you'd save to database and send email)
+	log.Printf("Contact form received from %s (%s): %s", form.Name, form.Email, form.Subject)
+	log.Printf("Company: %s, Budget: %s, Timeline: %s", form.Company, form.Budget, form.Timeline)
+	log.Printf("Message: %s", form.Message)
+	
+	// TODO: In production, implement:
+	// 1. Save to database
+	// 2. Send email notification
+	// 3. Add to CRM system
+	// 4. Send auto-reply to user
 	
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{"status": "success"})
+	json.NewEncoder(w).Encode(map[string]string{
+		"message": "Thank you for your message! I'll get back to you within 24 hours.",
+		"status":  "success",
+	})
 }
 
 type Skill struct {

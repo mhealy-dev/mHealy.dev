@@ -128,3 +128,39 @@
     background-size: 50px 50px;
   }
 }
+
+/* Print styles for resume */
+@media print {
+  @page {
+    margin: 0.5in;
+    size: letter;
+  }
+  
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Ensure good contrast for printed resume */
+  .resume-container * {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .resume-container h1, 
+  .resume-container h2, 
+  .resume-container h3, 
+  .resume-container h4 {
+    color: #1a1a1a !important;
+    font-weight: bold !important;
+  }
+  
+  .resume-container a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+}
