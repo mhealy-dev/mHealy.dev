@@ -1,6 +1,16 @@
-# GitHub Pages Deployment Guide
+# Deployment Guide
 
-Your portfolio is now fully configured for GitHub Pages deployment at: `https://mhealy-dev.github.io/mHealy.dev/`
+## Current Configuration: Cloudflare Hosting
+
+Your portfolio is now configured for deployment at: `https://mhealy.dev/`
+
+For Cloudflare-specific deployment instructions, see [CLOUDFLARE-DEPLOYMENT.md](./CLOUDFLARE-DEPLOYMENT.md)
+
+---
+
+## Alternative: GitHub Pages
+
+If you want to use GitHub Pages instead, your portfolio was previously configured for deployment at: `https://mhealy-dev.github.io/mHealy.dev/`
 
 ## Changes Made for GitHub Pages Compatibility
 

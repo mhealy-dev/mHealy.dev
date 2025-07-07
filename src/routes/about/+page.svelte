@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { onMount } from 'svelte';
 	
 	let currentImageIndex = 0;
@@ -200,10 +199,10 @@
 				I'm always excited to tackle new challenges.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<a href="{base}/contact" class="btn btn-primary">
+				<a href="/contact" class="btn btn-primary">
 					Get in Touch
 				</a>
-				<a href="{base}/projects" class="btn btn-outline">
+				<a href="/projects" class="btn btn-outline">
 					View My Work
 				</a>
 			</div>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { base } from '$app/paths';
 	
 	// Projects data - would normally come from API
 	const projects = [
@@ -361,10 +360,10 @@
 						infrastructure automation, and building scalable solutions.
 					</p>
 					<div class="flex flex-col sm:flex-row gap-4 justify-center">
-						<a href="{base}/contact" class="btn btn-primary">
+						<a href="/contact" class="btn btn-primary">
 							Get in Touch
 						</a>
-						<a href="{base}/resume" class="btn btn-outline">
+						<a href="/resume" class="btn btn-outline">
 							View Resume
 						</a>
 					</div>

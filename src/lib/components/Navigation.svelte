@@ -1,17 +1,16 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import { base } from "$app/paths";
     import { onMount } from "svelte";
 
     let isScrolled = false;
     let isMobileMenuOpen = false;
 
     const navItems = [
-        { href: `${base}/`, label: "Home" },
-        { href: `${base}/about`, label: "About" },
-        { href: `${base}/projects`, label: "Projects" },
-        { href: `${base}/resume`, label: "Resume" },
-        { href: `${base}/contact`, label: "Contact" },
+        { href: "/", label: "Home" },
+        { href: "/about", label: "About" },
+        { href: "/projects", label: "Projects" },
+        { href: "/resume", label: "Resume" },
+        { href: "/contact", label: "Contact" },
     ];
 
     onMount(() => {
@@ -33,7 +32,7 @@
 >
     <div class="section-container">
         <div class="flex items-center justify-between h-20">
-            <a href="{base}/" class="text-2xl font-bold gradient-text neon-glow-sm">
+            <a href="/" class="text-2xl font-bold gradient-text neon-glow-sm">
                 Michael Healy
             </a>
 
