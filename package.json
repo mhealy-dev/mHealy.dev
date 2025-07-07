@@ -10,7 +10,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "backend:dev": "cd backend && go run cmd/main.go",
-    "backend:build": "cd backend && go build -o ../dist/server cmd/main.go"
+    "backend:build": "cd backend && go build -o ../dist/server cmd/main.go",
+    "workers:dev": "wrangler dev .svelte-kit/cloudflare",
+    "workers:preview": "npm run build && wrangler dev .svelte-kit/cloudflare",
+    "deploy": "npm run build && wrangler deploy"
   },
   "keywords": [
     "portfolio",
@@ -22,7 +25,9 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250705.0",
     "@sveltejs/adapter-auto": "^6.0.1",
+    "@sveltejs/adapter-cloudflare": "^7.0.4",
     "@sveltejs/kit": "^2.22.2",
     "@sveltejs/vite-plugin-svelte": "^5.1.0",
     "@types/node": "^24.0.10",
@@ -33,7 +38,8 @@
     "tailwindcss": "^3.4.17",
     "tslib": "^2.8.1",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "wrangler": "^4.23.0"
   },
   "dependencies": {
     "@sveltejs/adapter-static": "^3.0.8",

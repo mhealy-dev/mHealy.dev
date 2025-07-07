@@ -45,4 +45,7 @@ coverage/
 # OS files
 Thumbs.db
 
+# Cloudflare
+.wrangler/
+
 CLAUDE.md

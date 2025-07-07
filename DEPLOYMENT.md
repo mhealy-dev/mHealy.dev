@@ -1,10 +1,16 @@
 # Deployment Guide
 
-## Current Configuration: Cloudflare Hosting
+## Current Configuration: Cloudflare Workers
 
-Your portfolio is now configured for deployment at: `https://mhealy.dev/`
+Your portfolio is now configured for deployment on Cloudflare Workers at: `https://mhealy.dev/`
 
-For Cloudflare-specific deployment instructions, see [CLOUDFLARE-DEPLOYMENT.md](./CLOUDFLARE-DEPLOYMENT.md)
+### Deployment Options:
+
+1. **Cloudflare Workers** (Current Setup) - Edge computing with global distribution
+   - See [CLOUDFLARE-WORKERS-DEPLOYMENT.md](./CLOUDFLARE-WORKERS-DEPLOYMENT.md)
+
+2. **Cloudflare Pages** (Static hosting alternative)
+   - See [CLOUDFLARE-DEPLOYMENT.md](./CLOUDFLARE-DEPLOYMENT.md)
 
 ---
 
