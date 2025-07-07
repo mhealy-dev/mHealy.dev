@@ -1,6 +1,6 @@
 # mHealy.dev - Personal Portfolio
 
-A modern, responsive portfolio website built with Svelte 5 and Go, showcasing projects, skills, and professional experience.
+A modern, responsive portfolio website built with Svelte 5 and Go, featuring a synthwave-inspired design with lavender/lilac/pink aesthetics. Showcases professional platform engineering experience, projects, and skills with interactive components.
 
 ## Tech Stack
 
@@ -17,14 +17,16 @@ A modern, responsive portfolio website built with Svelte 5 and Go, showcasing pr
 
 ## Features
 
-- ✨ Modern, responsive design
-- 🎨 Dark mode support
-- ⚡ Fast page loads with SSR
-- 📱 Mobile-first approach
-- 🔄 Interactive resume
-- 📬 Contact form with email integration
-- 🎯 Project showcase with filtering
-- 🏃 Smooth animations and transitions
+- ✨ Modern synthwave design with neon effects
+- 🎨 Custom lavender/lilac/pink color palette
+- ⚡ Fast page loads with SSR and TypeScript
+- 📱 Mobile-first responsive design
+- 🔄 Interactive resume with PDF generation
+- 📬 Comprehensive contact form with validation
+- 🎯 Project showcase with filtering and search
+- 🏃 Smooth animations and glass morphism effects
+- 💼 Professional Platform Engineering focus
+- 🎪 Skills section with expandable use cases
 
 ## Getting Started
 
@@ -32,6 +34,7 @@ A modern, responsive portfolio website built with Svelte 5 and Go, showcasing pr
 - Node.js 18+
 - Go 1.21+
 - npm or yarn
+- Optional: Docker for containerized deployment
 
 ### Installation
 
@@ -83,17 +86,33 @@ mhealy.dev/
 ├── src/                    # Frontend source
 │   ├── lib/               # Shared components and utilities
 │   │   ├── components/    # Svelte components
-│   │   ├── stores/        # Svelte stores
+│   │   │   ├── Hero.svelte           # Landing with typewriter
+│   │   │   ├── Navigation.svelte     # Responsive nav
+│   │   │   ├── SkillsSection.svelte  # Interactive skills
+│   │   │   ├── ProjectsSection.svelte# Project grid
+│   │   │   ├── ContactSection.svelte # Contact form
+│   │   │   └── Footer.svelte         # Social links
+│   │   ├── stores/        # Svelte stores (future)
 │   │   └── utils/         # Helper functions
 │   ├── routes/            # SvelteKit routes
-│   └── app.css           # Global styles
+│   │   ├── +layout.svelte           # Global layout
+│   │   ├── +page.svelte             # Homepage
+│   │   ├── resume/+page.svelte      # Resume with PDF
+│   │   ├── projects/+page.svelte    # Projects showcase
+│   │   ├── contact/+page.svelte     # Contact form
+│   │   ├── about/+page.svelte       # About page
+│   │   └── api/                     # API routes
+│   │       └── resume/download/+server.ts # PDF generation
+│   ├── app.html          # HTML template
+│   └── app.css           # Global synthwave styles
 ├── backend/               # Go backend
 │   ├── cmd/              # Application entrypoints
-│   └── internal/         # Internal packages
-│       ├── handlers/     # HTTP handlers
-│       ├── models/       # Data models
-│       └── services/     # Business logic
+│   │   └── main.go       # Server entry point
+│   └── internal/         # Internal packages (future)
 ├── static/               # Static assets
+├── tailwind.config.js    # Custom synthwave theme
+├── vite.config.ts        # Vite with API proxy
+├── CLAUDE.md            # AI development guide
 └── package.json         # Project configuration
 ```
 
@@ -104,14 +123,56 @@ Create a `.env` file in the root directory:
 ```env
 # Backend
 PORT=8080
-DATABASE_URL=postgresql://...
+DATABASE_URL=postgresql://... # Future implementation
 
-# Email Service (for contact form)
+# Email Service (for contact form) - Future implementation
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=your-email@example.com
 SMTP_PASS=your-password
+
+# PDF Generation
+PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium # Optional for server PDF
 ```
+
+## Pages Overview
+
+### Homepage (`/`)
+- Hero section with typewriter animation
+- Interactive skills with hover-expandable use cases
+- Featured projects grid
+- Contact form with validation
+- Responsive navigation and footer
+
+### Resume (`/resume`)
+- Professional resume display
+- PDF download functionality (server-side Puppeteer + client-side jsPDF fallback)
+- Clean, ATS-optimized formatting
+- Real Platform Engineering experience
+
+### Projects (`/projects`)
+- Interactive project showcase
+- Filter by category (Infrastructure, Full Stack, DevOps, etc.)
+- Filter by status (Production, Development)
+- Real-time search functionality
+- Featured projects from YUM! Brands and Taco Bell experience
+
+### Contact (`/contact`)
+- Comprehensive contact form with budget/timeline fields
+- FAQ section for common questions
+- Multiple contact methods
+- Response time expectations
+
+### About (`/about`)
+- Placeholder for future personal content
+
+## Development Notes
+
+- **Design**: Synthwave theme with lavender/lilac/pink palette
+- **Animations**: Smooth transitions and glass morphism effects
+- **Performance**: Optimized for fast loading and mobile responsiveness
+- **Architecture**: Component-based with proper separation of concerns
+- **Data**: Currently using mock data; database integration planned
 
 ## License
 
