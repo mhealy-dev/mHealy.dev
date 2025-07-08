@@ -84,7 +84,7 @@
 		}
 	];
 
-	let expandedSkill: string | null = null;
+	let expandedSkill = $state<string | null>(null);
 </script>
 
 <section id="skills" class="py-20 relative">
@@ -95,9 +95,11 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
 			{#each skills as skill, i}
 				<div class="card p-6 group transition-all duration-500 ease-in-out relative cursor-pointer overflow-hidden"
+				     role="button"
+				     tabindex="0"
 				     style="animation-delay: {i * 100}ms; min-height: 100px;"
-				     on:mouseenter={() => expandedSkill = skill.name}
-				     on:mouseleave={() => expandedSkill = null}>
+				     onmouseenter={() => expandedSkill = skill.name}
+				     onmouseleave={() => expandedSkill = null}>
 					<div class="flex justify-between items-center mb-3">
 						<h3 class="font-semibold text-lg text-primary-200 transition-colors duration-300 {expandedSkill === skill.name ? 'text-primary-100' : ''}">{skill.name}</h3>
 						<span class="text-xs px-2 py-1 rounded-full bg-primary-500 bg-opacity-20 text-primary-300 transition-all duration-300 {expandedSkill === skill.name ? 'bg-opacity-30' : ''}">

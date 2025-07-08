@@ -2,11 +2,11 @@
 	import { enhance } from '$app/forms';
 	import { browser } from '$app/environment';
 	
-	let isSubmitting = false;
-	let submitMessage = '';
-	let messageType: 'success' | 'error' | '' = '';
+	let isSubmitting = $state(false);
+	let submitMessage = $state('');
+	let messageType = $state<'success' | 'error' | ''>('');
 	
-	let formData = {
+	let formData = $state({
 		name: '',
 		email: '',
 		company: '',
@@ -14,7 +14,7 @@
 		message: '',
 		budget: '',
 		timeline: ''
-	};
+	});
 	
 	const subjects = [
 		'Platform Engineering Consultation',
@@ -150,7 +150,7 @@ ${formData.message}
 		}
 	];
 	
-	let expandedFAQ: number | null = null;
+	let expandedFAQ = $state<number | null>(null);
 	
 	function toggleFAQ(index: number) {
 		expandedFAQ = expandedFAQ === index ? null : index;
@@ -215,7 +215,7 @@ ${formData.message}
 					<div class="card p-8">
 						<h2 class="text-2xl font-bold text-primary-100 mb-6">Send a Message</h2>
 						
-						<form on:submit={handleSubmit} class="space-y-6">
+						<form onsubmit={handleSubmit} class="space-y-6">
 							<!-- Name & Email Row -->
 							<div class="grid md:grid-cols-2 gap-4">
 								<div>
@@ -394,7 +394,7 @@ ${formData.message}
 					{#each faqs as faq, i}
 						<div class="card p-0 overflow-hidden">
 							<button 
-								on:click={() => toggleFAQ(i)}
+								onclick={() => toggleFAQ(i)}
 								class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-800 hover:bg-opacity-30 transition-all">
 								<h3 class="text-lg font-semibold text-primary-200">{faq.question}</h3>
 								<svg class="w-5 h-5 text-gray-400 transform transition-transform {expandedFAQ === i ? 'rotate-180' : ''}" 

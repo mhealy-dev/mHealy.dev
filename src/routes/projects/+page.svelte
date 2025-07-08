@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	
 	// Projects data - would normally come from API
 	const projects = [
 		{
@@ -131,16 +129,16 @@
 		}
 	];
 	
-	let filteredProjects = projects;
-	let selectedCategory = 'All';
-	let searchQuery = '';
-	let selectedStatus = 'All';
+	let selectedCategory = $state('All');
+	let searchQuery = $state('');
+	let selectedStatus = $state('All');
+	let mounted = $state(false);
 	
 	const categories = ['All', ...new Set(projects.map(p => p.category))];
 	const statuses = ['All', ...new Set(projects.map(p => p.status))];
 	
-	function filterProjects() {
-		filteredProjects = projects.filter(project => {
+	let filteredProjects = $derived(
+		projects.filter(project => {
 			const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
 			const matchesStatus = selectedStatus === 'All' || project.status === selectedStatus;
 			const matchesSearch = searchQuery === '' || 
@@ -149,18 +147,10 @@
 				project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
 			
 			return matchesCategory && matchesStatus && matchesSearch;
-		});
-	}
+		})
+	);
 	
-	$: {
-		selectedCategory;
-		selectedStatus;
-		searchQuery;
-		filterProjects();
-	}
-	
-	let mounted = false;
-	onMount(() => {
+	$effect(() => {
 		mounted = true;
 	});
 </script>
@@ -202,7 +192,7 @@
 					<div class="flex gap-2 flex-wrap">
 						{#each categories as category}
 							<button 
-								on:click={() => selectedCategory = category}
+								onclick={() => selectedCategory = category}
 								class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {selectedCategory === category 
 									? 'bg-primary-500 text-white' 
 									: 'bg-gray-800 bg-opacity-50 text-gray-400 hover:text-primary-300 hover:bg-primary-500 hover:bg-opacity-20'}">
@@ -215,7 +205,7 @@
 					<div class="flex gap-2">
 						{#each statuses as status}
 							<button 
-								on:click={() => selectedStatus = status}
+								onclick={() => selectedStatus = status}
 								class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {selectedStatus === status 
 									? 'bg-secondary-500 text-white' 
 									: 'bg-gray-800 bg-opacity-50 text-gray-400 hover:text-secondary-300 hover:bg-secondary-500 hover:bg-opacity-20'}">

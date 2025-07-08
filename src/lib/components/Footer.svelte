@@ -12,11 +12,6 @@
             href: "https://www.linkedin.com/in/michael-healy-5aabaa161/",
             icon: "linkedin",
         },
-        {
-            name: "Twitter",
-            href: "https://twitter.com/mhealy",
-            icon: "twitter",
-        },
     ];
 </script>
 

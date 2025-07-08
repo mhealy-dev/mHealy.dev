@@ -1,14 +1,12 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-
-    let typedText = "";
+    let typedText = $state("");
     const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
-    let currentRole = 0;
-    let isDeleting = false;
-    let scrollY = 0;
-    let showScrollIndicator = true;
+    let currentRole = $state(0);
+    let isDeleting = $state(false);
+    let scrollY = $state(0);
+    let showScrollIndicator = $derived(scrollY < 50); // Show when at top, hide when scrolled down
 
-    onMount(() => {
+    $effect(() => {
         const typeSpeed = 100;
         const deleteSpeed = 50;
         const pauseTime = 2000;
@@ -43,7 +41,6 @@
         // Handle scroll indicator visibility
         const handleScroll = () => {
             scrollY = window.scrollY;
-            showScrollIndicator = scrollY < 50; // Show when at top, hide when scrolled down
         };
 
         window.addEventListener('scroll', handleScroll);

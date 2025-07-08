@@ -1,9 +1,8 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import { onMount } from "svelte";
 
-    let isScrolled = false;
-    let isMobileMenuOpen = false;
+    let isScrolled = $state(false);
+    let isMobileMenuOpen = $state(false);
 
     const navItems = [
         { href: "/", label: "Home" },
@@ -13,7 +12,7 @@
         { href: "/contact", label: "Contact" },
     ];
 
-    onMount(() => {
+    $effect(() => {
         const handleScroll = () => {
             isScrolled = window.scrollY > 20;
         };
@@ -57,7 +56,7 @@
 
             <!-- Mobile Menu Button -->
             <button
-                on:click={() => (isMobileMenuOpen = !isMobileMenuOpen)}
+                onclick={() => (isMobileMenuOpen = !isMobileMenuOpen)}
                 class="md:hidden p-2 rounded-lg border border-primary-500 border-opacity-20 hover:border-primary-500 hover:border-opacity-40 hover:bg-primary-500 hover:bg-opacity-10 transition-all duration-300"
             >
                 <svg
@@ -95,7 +94,7 @@
                     {#each navItems as item}
                         <a
                             href={item.href}
-                            on:click={() => (isMobileMenuOpen = false)}
+                            onclick={() => (isMobileMenuOpen = false)}
                             class="block text-lg font-medium text-gray-300 hover:text-primary-300 transition-colors"
                             class:text-primary-300={$page.url.pathname ===
                                 item.href}
