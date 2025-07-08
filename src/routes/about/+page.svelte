@@ -19,7 +19,7 @@
             icon: "🔧",
         },
         {
-            year: "2021",
+            year: "2021-2023",
             title: "POS Infrastructure Lead",
             description:
                 "Promoted to PSA I–III roles at Taco Bell, leading automation and dashboard work for FOH/NGPOS initiatives.",
@@ -36,7 +36,7 @@
             year: "2025",
             title: "Platform Engineer",
             description:
-                "Transitioned to one of three Platform Engineers on the Byte team, focused on internal developer platforms and temporal workflows.",
+                "Transitioned to one of three Platform Engineers on the Byte team, focused on internal developer platform and temporal workflows.",
             icon: "🚀",
         },
     ];
@@ -136,39 +136,13 @@
                         </h2>
                         <div class="space-y-4 text-gray-300 leading-relaxed">
                             <p>
-                                I'm a <span
-                                    class="text-primary-300 font-semibold"
-                                    >Platform Engineer</span
-                                >
-                                passionate about building scalable infrastructure
-                                and creating tools that empower developers. With
-                                expertise in
-                                <span class="text-secondary-300 font-semibold"
-                                    >Go, Terraform, and AWS</span
-                                >, I specialize in designing cloud-native
-                                solutions that are both robust and elegant.
+                                I'm a <span class="text-primary-300 font-semibold">Platform Engineer</span> focused on building scalable systems and developer-first tooling. At Yum! Brands, I'm one of three engineers behind our Internal Developer Portal (IDP), where I use <span class="text-secondary-300 font-semibold">Go and Temporal</span> to automate everything from infrastructure scaffolding to workflow orchestration. My toolkit includes <span class="text-accent-300 font-semibold">Terraform, Terragrunt, AWS</span>, and a problem-solving mindset that values clarity, consistency, and speed.
                             </p>
                             <p>
-                                My journey in tech started with a curiosity
-                                about how things work under the hood. This
-                                curiosity evolved into a career focused on <span
-                                    class="text-accent-300 font-semibold"
-                                    >Infrastructure as Code</span
-                                >,
-                                <span class="text-accent-300 font-semibold"
-                                    >DevOps practices</span
-                                >, and
-                                <span class="text-accent-300 font-semibold"
-                                    >full-stack development</span
-                                >.
+                                My path into tech wasn't traditional. I started on the Taco Bell service desk—where I learned firsthand how broken systems and bad code ripple down to frontline teams. That experience shaped my entire engineering philosophy. From there, I moved into reliability engineering, then became the go-to for automation across Yum's global platforms. I've built monitoring systems, production tools, and internal platforms that have empowered teams around the world. Before all that, I ran a construction company—so building things that don't fall apart is kind of my thing.
                             </p>
                             <p>
-                                When I'm not architecting cloud solutions or
-                                writing Go microservices, you'll find me
-                                exploring new technologies, contributing to
-                                open-source projects, or optimizing my
-                                development workflow (because who doesn't love a
-                                good automation script?).
+                                Outside of work, I'm into <span class="text-primary-300 font-semibold">Magic: The Gathering</span> (Commander all day), skateboarding, board games, and catching a quiet moment with a fishing rod when I can. I like finding clever solutions, whether it's fixing legacy code or breaking down someone's busted MTG combo. My philosophy? <span class="text-accent-300 font-semibold">Be curious, not judgmental.</span> It keeps things fun, keeps me learning, and helps me build tools that make other people's lives easier.
                             </p>
                         </div>
 

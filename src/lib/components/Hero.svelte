@@ -1,15 +1,21 @@
 <script lang="ts">
-    let typedText = $state("");
-    const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
-    let currentRole = $state(0);
-    let isDeleting = $state(false);
-    let scrollY = $state(0);
-    let showScrollIndicator = $derived(scrollY < 50); // Show when at top, hide when scrolled down
+    import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
 
-    $effect(() => {
+    let typedText = "";
+    const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
+    let currentRole = 0;
+    let isDeleting = false;
+    let scrollY = 0;
+    $: showScrollIndicator = scrollY < 50; // Show when at top, hide when scrolled down
+
+    onMount(() => {
+        if (!browser) return;
+
         const typeSpeed = 100;
         const deleteSpeed = 50;
         const pauseTime = 2000;
+        let timeoutId: number;
 
         function typeWriter() {
             const currentText = roles[currentRole];
@@ -18,7 +24,7 @@
                 typedText = currentText.substring(0, typedText.length + 1);
 
                 if (typedText === currentText) {
-                    setTimeout(() => {
+                    timeoutId = setTimeout(() => {
                         isDeleting = true;
                         typeWriter();
                     }, pauseTime);
@@ -33,7 +39,7 @@
                 }
             }
 
-            setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
+            timeoutId = setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
         }
 
         typeWriter();
@@ -44,7 +50,11 @@
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        return () => {
+            clearTimeout(timeoutId);
+            window.removeEventListener('scroll', handleScroll);
+        };
     });
 </script>
 
