@@ -9,7 +9,7 @@
     <title>Michael Healy - Platform Engineer</title>
     <meta
         name="description"
-        content="Personal portfolio of Michael Healy - Full Stack Developer specializing in modern web technologies"
+        content="Personal portfolio of Michael Healy - Platform Engineer specializing in automating everything"
     />
 </svelte:head>
 
