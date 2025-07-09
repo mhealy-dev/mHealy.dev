@@ -1,17 +1,21 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
 
     let typedText = "";
     const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
     let currentRole = 0;
     let isDeleting = false;
     let scrollY = 0;
-    let showScrollIndicator = true;
+    $: showScrollIndicator = scrollY < 50; // Show when at top, hide when scrolled down
 
     onMount(() => {
+        if (!browser) return;
+
         const typeSpeed = 100;
         const deleteSpeed = 50;
         const pauseTime = 2000;
+        let timeoutId: ReturnType<typeof setTimeout>;
 
         function typeWriter() {
             const currentText = roles[currentRole];
@@ -20,7 +24,7 @@
                 typedText = currentText.substring(0, typedText.length + 1);
 
                 if (typedText === currentText) {
-                    setTimeout(() => {
+                    timeoutId = setTimeout(() => {
                         isDeleting = true;
                         typeWriter();
                     }, pauseTime);
@@ -35,7 +39,7 @@
                 }
             }
 
-            setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
+            timeoutId = setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
         }
 
         typeWriter();
@@ -43,11 +47,14 @@
         // Handle scroll indicator visibility
         const handleScroll = () => {
             scrollY = window.scrollY;
-            showScrollIndicator = scrollY < 50; // Show when at top, hide when scrolled down
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        return () => {
+            clearTimeout(timeoutId);
+            window.removeEventListener('scroll', handleScroll);
+        };
     });
 </script>
 
@@ -67,7 +74,7 @@
             style="animation-delay: 1s"
         ></div>
         <div
-            class="absolute top-1/2 left-1/2 w-80 h-80 bg-accent-500 bg-opacity-10 rounded-full blur-3xl animate-pulse"
+            class="absolute top-1/2 left-1/2 w-80 h-80 bg-primary-400 bg-opacity-10 rounded-full blur-3xl animate-pulse"
             style="animation-delay: 2s"
         ></div>
     </div>
@@ -75,7 +82,7 @@
     <div class="section-container text-center relative z-10">
         <div class="animate-fade-in">
             <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                Hi, I'm <span class="gradient-text neon-glow"
+                Hi, I'm <span class="gradient-text"
                     >Michael Healy</span
                 >
             </h1>
@@ -84,7 +91,7 @@
                 class="text-2xl md:text-4xl text-primary-200 mb-8 h-12 font-mono"
             >
                 <span class="gradient-text-subtle">{typedText}</span>
-                <span class="animate-pulse text-accent-400">_</span>
+                <span class="animate-pulse text-secondary-400">_</span>
             </div>
 
             <p
@@ -99,7 +106,7 @@
                 <a href="/projects" class="btn btn-primary group">
                     <span class="relative z-10">View My Projects</span>
                     <div
-                        class="absolute inset-0 bg-gradient-to-r from-accent-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                        class="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
                     ></div>
                 </a>
                 <a href="/contact" class="btn btn-outline"> Get In Touch </a>

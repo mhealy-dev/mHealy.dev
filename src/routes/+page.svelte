@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-    <title>Michael Healy - Full Stack Developer</title>
+    <title>Michael Healy - Platform Engineer</title>
     <meta
         name="description"
         content="Personal portfolio of Michael Healy - Full Stack Developer specializing in modern web technologies"

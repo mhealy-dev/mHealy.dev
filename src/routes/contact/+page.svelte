@@ -2,11 +2,11 @@
 	import { enhance } from '$app/forms';
 	import { browser } from '$app/environment';
 	
-	let isSubmitting = false;
-	let submitMessage = '';
-	let messageType: 'success' | 'error' | '' = '';
+	let isSubmitting = $state(false);
+	let submitMessage = $state('');
+	let messageType = $state<'success' | 'error' | ''>('');
 	
-	let formData = {
+	let formData = $state({
 		name: '',
 		email: '',
 		company: '',
@@ -14,7 +14,7 @@
 		message: '',
 		budget: '',
 		timeline: ''
-	};
+	});
 	
 	const subjects = [
 		'Platform Engineering Consultation',
@@ -150,7 +150,7 @@ ${formData.message}
 		}
 	];
 	
-	let expandedFAQ: number | null = null;
+	let expandedFAQ = $state<number | null>(null);
 	
 	function toggleFAQ(index: number) {
 		expandedFAQ = expandedFAQ === index ? null : index;
@@ -215,7 +215,7 @@ ${formData.message}
 					<div class="card p-8">
 						<h2 class="text-2xl font-bold text-primary-100 mb-6">Send a Message</h2>
 						
-						<form on:submit={handleSubmit} class="space-y-6">
+						<form onsubmit={handleSubmit} class="space-y-6">
 							<!-- Name & Email Row -->
 							<div class="grid md:grid-cols-2 gap-4">
 								<div>
@@ -319,7 +319,7 @@ ${formData.message}
 									Sending...
 								{:else}
 									<span class="relative z-10">Send Message</span>
-									<div class="absolute inset-0 bg-gradient-to-r from-accent-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+									<div class="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
 								{/if}
 							</button>
 							
@@ -356,25 +356,25 @@ ${formData.message}
 							<h3 class="text-xl font-semibold text-primary-200 mb-4">What to Expect</h3>
 							<ul class="space-y-3">
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Initial consultation call</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Detailed project proposal</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Timeline and milestone planning</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Regular progress updates</span>
@@ -394,7 +394,7 @@ ${formData.message}
 					{#each faqs as faq, i}
 						<div class="card p-0 overflow-hidden">
 							<button 
-								on:click={() => toggleFAQ(i)}
+								onclick={() => toggleFAQ(i)}
 								class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-800 hover:bg-opacity-30 transition-all">
 								<h3 class="text-lg font-semibold text-primary-200">{faq.question}</h3>
 								<svg class="w-5 h-5 text-gray-400 transform transition-transform {expandedFAQ === i ? 'rotate-180' : ''}" 

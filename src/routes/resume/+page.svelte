@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import { browser } from "$app/environment";
 
-    let isGeneratingPDF = false;
+    let isGeneratingPDF = $state(false);
 
     async function handleDownloadPDF() {
         if (!browser) return;
@@ -16,158 +15,149 @@
             // Create a clean PDF optimized for ATS
             const pdf = new jsPDF("p", "pt", "letter");
 
-                // Set fonts
-                pdf.setFont("helvetica");
+            // Set fonts
+            pdf.setFont("helvetica");
 
-                // Helper functions
-                const addText = (
-                    text: string,
-                    x: number,
-                    y: number,
-                    size: number = 11,
-                    style: string = "normal",
-                ) => {
-                    pdf.setFontSize(size);
-                    pdf.setFont("helvetica", style);
-                    pdf.text(text, x, y);
-                };
+            // Helper functions
+            const addText = (
+                text: string,
+                x: number,
+                y: number,
+                size: number = 11,
+                style: string = "normal",
+            ) => {
+                pdf.setFontSize(size);
+                pdf.setFont("helvetica", style);
+                pdf.text(text, x, y);
+            };
 
-                const addLine = (y: number) => {
-                    pdf.setLineWidth(0.5);
-                    pdf.line(40, y, 572, y);
-                };
+            const addLine = (y: number) => {
+                pdf.setLineWidth(0.5);
+                pdf.line(40, y, 572, y);
+            };
 
-                let yPos = 60;
+            let yPos = 60;
 
-                // Header
-                addText(resumeData.name, 306, yPos, 24, "bold");
-                yPos += 30;
-                addText(resumeData.title, 306, yPos, 14);
-                yPos += 25;
+            // Header
+            addText(resumeData.name, 306, yPos, 24, "bold");
+            yPos += 30;
+            addText(resumeData.title, 306, yPos, 14);
+            yPos += 25;
 
-                // Contact info
-                pdf.setFontSize(10);
-                const contactInfo = `${resumeData.contact.email} | ${resumeData.contact.phone} | ${resumeData.contact.location}`;
-                pdf.text(contactInfo, 306, yPos, { align: "center" });
-                yPos += 15;
-                const socialInfo = `GitHub: ${resumeData.contact.github} | LinkedIn: ${resumeData.contact.linkedin}`;
-                pdf.text(socialInfo, 306, yPos, { align: "center" });
-                yPos += 25;
+            // Contact info
+            pdf.setFontSize(10);
+            const contactInfo = `${resumeData.contact.email} | ${resumeData.contact.location}`;
+            pdf.text(contactInfo, 306, yPos, { align: "center" });
+            yPos += 15;
+            const socialInfo = `GitHub: ${resumeData.contact.github} | LinkedIn: ${resumeData.contact.linkedin}`;
+            pdf.text(socialInfo, 306, yPos, { align: "center" });
+            yPos += 25;
 
-                // Professional Summary
-                addLine(yPos);
-                yPos += 20;
-                addText("PROFESSIONAL SUMMARY", 40, yPos, 12, "bold");
-                yPos += 20;
+            // Professional Summary
+            addLine(yPos);
+            yPos += 20;
+            addText("PROFESSIONAL SUMMARY", 40, yPos, 12, "bold");
+            yPos += 20;
 
-                // Wrap summary text
-                const summaryLines = pdf.splitTextToSize(
-                    resumeData.summary,
-                    532,
-                );
+            // Wrap summary text
+            const summaryLines = pdf.splitTextToSize(resumeData.summary, 532);
+            pdf.setFontSize(11);
+            pdf.setFont("helvetica", "normal");
+            summaryLines.forEach((line: string) => {
+                pdf.text(line, 40, yPos);
+                yPos += 16;
+            });
+            yPos += 10;
+
+            // Experience
+            addLine(yPos);
+            yPos += 20;
+            addText("PROFESSIONAL EXPERIENCE", 40, yPos, 12, "bold");
+            yPos += 20;
+
+            resumeData.experience.slice(0, 4).forEach((job) => {
+                // Job header
+                pdf.setFont("helvetica", "bold");
                 pdf.setFontSize(11);
+                pdf.text(job.title, 40, yPos);
                 pdf.setFont("helvetica", "normal");
-                summaryLines.forEach((line: string) => {
-                    pdf.text(line, 40, yPos);
-                    yPos += 16;
-                });
-                yPos += 10;
+                pdf.text(job.period, 572, yPos, { align: "right" });
+                yPos += 16;
 
-                // Experience
-                addLine(yPos);
-                yPos += 20;
-                addText("PROFESSIONAL EXPERIENCE", 40, yPos, 12, "bold");
-                yPos += 20;
+                pdf.setFont("helvetica", "italic");
+                pdf.text(`${job.company}, ${job.location}`, 40, yPos);
+                yPos += 16;
 
-                resumeData.experience.slice(0, 4).forEach((job) => {
-                    // Job header
-                    pdf.setFont("helvetica", "bold");
-                    pdf.setFontSize(11);
-                    pdf.text(job.title, 40, yPos);
-                    pdf.setFont("helvetica", "normal");
-                    pdf.text(job.period, 572, yPos, { align: "right" });
-                    yPos += 16;
-
-                    pdf.setFont("helvetica", "italic");
-                    pdf.text(`${job.company}, ${job.location}`, 40, yPos);
-                    yPos += 16;
-
-                    // Highlights
-                    pdf.setFont("helvetica", "normal");
-                    job.highlights.forEach((highlight) => {
-                        if (yPos > 700) {
-                            pdf.addPage();
-                            yPos = 60;
-                        }
-                        const bulletLines = pdf.splitTextToSize(
-                            `• ${highlight}`,
-                            520,
-                        );
-                        bulletLines.forEach((line: string, index: number) => {
-                            pdf.text(
-                                index === 0 ? line : `  ${line}`,
-                                50,
-                                yPos,
-                            );
-                            yPos += 16;
-                        });
-                    });
-                    yPos += 10;
-                });
-
-                // Check if we need a new page for skills
-                if (yPos > 600) {
-                    pdf.addPage();
-                    yPos = 60;
-                }
-
-                // Skills
-                addLine(yPos);
-                yPos += 20;
-                addText("TECHNICAL SKILLS", 40, yPos, 12, "bold");
-                yPos += 20;
-
-                Object.entries(resumeData.skills).forEach(
-                    ([category, skills]) => {
-                        pdf.setFont("helvetica", "bold");
-                        pdf.text(`${category}:`, 40, yPos);
-                        pdf.setFont("helvetica", "normal");
-
-                        const skillsText = (skills as string[]).join(", ");
-                        const skillLines = pdf.splitTextToSize(skillsText, 480);
-                        skillLines.forEach((line: string, index: number) => {
-                            pdf.text(line, 140, yPos + index * 16);
-                        });
-                        yPos += skillLines.length * 16 + 10;
-                    },
-                );
-
-                // Education & Certifications
-                if (yPos > 700) {
-                    pdf.addPage();
-                    yPos = 60;
-                }
-
-                addLine(yPos);
-                yPos += 20;
-                addText("EDUCATION & CERTIFICATIONS", 40, yPos, 12, "bold");
-                yPos += 20;
-
+                // Highlights
                 pdf.setFont("helvetica", "normal");
-                resumeData.education.forEach((edu) => {
-                    pdf.text(`${edu.degree} - ${edu.school}`, 40, yPos);
-                    yPos += 16;
-                    if (edu.focus) {
-                        pdf.text(`Focus: ${edu.focus}`, 40, yPos);
-                        yPos += 16;
+                job.highlights.forEach((highlight) => {
+                    if (yPos > 700) {
+                        pdf.addPage();
+                        yPos = 60;
                     }
+                    const bulletLines = pdf.splitTextToSize(
+                        `• ${highlight}`,
+                        520,
+                    );
+                    bulletLines.forEach((line: string, index: number) => {
+                        pdf.text(index === 0 ? line : `  ${line}`, 50, yPos);
+                        yPos += 16;
+                    });
                 });
-
                 yPos += 10;
-                resumeData.certifications.forEach((cert) => {
-                    pdf.text(`${cert.name} - ${cert.issuer}`, 40, yPos);
-                    yPos += 16;
+            });
+
+            // Check if we need a new page for skills
+            if (yPos > 600) {
+                pdf.addPage();
+                yPos = 60;
+            }
+
+            // Skills
+            addLine(yPos);
+            yPos += 20;
+            addText("TECHNICAL SKILLS", 40, yPos, 12, "bold");
+            yPos += 20;
+
+            Object.entries(resumeData.skills).forEach(([category, skills]) => {
+                pdf.setFont("helvetica", "bold");
+                pdf.text(`${category}:`, 40, yPos);
+                pdf.setFont("helvetica", "normal");
+
+                const skillsText = (skills as string[]).join(", ");
+                const skillLines = pdf.splitTextToSize(skillsText, 480);
+                skillLines.forEach((line: string, index: number) => {
+                    pdf.text(line, 140, yPos + index * 16);
                 });
+                yPos += skillLines.length * 16 + 10;
+            });
+
+            // Education & Certifications
+            if (yPos > 700) {
+                pdf.addPage();
+                yPos = 60;
+            }
+
+            addLine(yPos);
+            yPos += 20;
+            addText("EDUCATION & CERTIFICATIONS", 40, yPos, 12, "bold");
+            yPos += 20;
+
+            pdf.setFont("helvetica", "normal");
+            resumeData.education.forEach((edu) => {
+                pdf.text(`${edu.degree} - ${edu.school}`, 40, yPos);
+                yPos += 16;
+                if (edu.focus) {
+                    pdf.text(`Focus: ${edu.focus}`, 40, yPos);
+                    yPos += 16;
+                }
+            });
+
+            yPos += 10;
+            resumeData.certifications.forEach((cert) => {
+                pdf.text(`${cert.name} - ${cert.issuer}`, 40, yPos);
+                yPos += 16;
+            });
 
             pdf.save("Michael_Healy_Resume.pdf");
         } catch (error) {
@@ -184,8 +174,7 @@
         title: "Platform Engineer",
         contact: {
             email: "mhealy.dev@gmail.com",
-            phone: "+64 022 074 8914",
-            location: "Mangawhai Heads, New Zealand",
+            location: "New Zealand",
             github: "github.com/mhealy-dev",
             linkedin: "linkedin.com/in/michael-healy-5aabaa161",
         },
@@ -309,7 +298,7 @@
         <div class="flex justify-between items-center mb-8 no-print">
             <h1 class="text-3xl font-bold gradient-text">Resume</h1>
             <button
-                on:click={handleDownloadPDF}
+                onclick={handleDownloadPDF}
                 class="btn btn-primary text-sm"
                 disabled={isGeneratingPDF}
             >
@@ -402,25 +391,6 @@
                             />
                         </svg>
                         {resumeData.contact.email}
-                    </a>
-                    <a
-                        href="tel:{resumeData.contact.phone}"
-                        class="px-3 py-1 rounded-full border border-gray-700 hover:border-primary-500 hover:text-primary-300 transition-all duration-300"
-                    >
-                        <svg
-                            class="w-4 h-4 inline mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                            />
-                        </svg>
-                        {resumeData.contact.phone}
                     </a>
                     <span class="px-3 py-1 rounded-full border border-gray-700">
                         <svg
@@ -548,7 +518,7 @@
                                                 class="text-sm text-gray-300 flex items-start"
                                             >
                                                 <svg
-                                                    class="w-4 h-4 text-accent-400 mr-2 mt-0.5 flex-shrink-0"
+                                                    class="w-4 h-4 text-secondary-400 mr-2 mt-0.5 flex-shrink-0"
                                                     fill="currentColor"
                                                     viewBox="0 0 20 20"
                                                 >
@@ -653,7 +623,7 @@
                                     {#each resumeData.certifications as cert}
                                         <div class="flex items-start space-x-4">
                                             <div
-                                                class="flex-shrink-0 w-2 h-2 bg-accent-400 rounded-full mt-2"
+                                                class="flex-shrink-0 w-2 h-2 bg-secondary-400 rounded-full mt-2"
                                             ></div>
                                             <div class="flex-grow">
                                                 <h5

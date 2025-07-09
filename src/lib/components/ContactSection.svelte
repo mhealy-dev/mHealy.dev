@@ -1,12 +1,12 @@
 <script lang="ts">
-	let formData = {
+	let formData = $state({
 		name: '',
 		email: '',
 		message: ''
-	};
+	});
 	
-	let isSubmitting = false;
-	let submitMessage = '';
+	let isSubmitting = $state(false);
+	let submitMessage = $state('');
 	
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
@@ -43,7 +43,7 @@
 		<h2 class="text-4xl font-bold text-center mb-4 gradient-text">Get In Touch</h2>
 		<p class="text-center text-gray-400 mb-12">Let's create something amazing together</p>
 		
-		<form on:submit={handleSubmit} class="space-y-6">
+		<form onsubmit={handleSubmit} class="space-y-6">
 			<div>
 				<label for="name" class="block text-sm font-medium mb-2 text-primary-300">Name</label>
 				<input 
