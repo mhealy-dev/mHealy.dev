@@ -44,33 +44,33 @@
     // Interests/hobbies
     const interests = [
         {
-            name: "Open Source",
-            icon: "💻",
-            description: "Contributing to OSS projects",
-        },
-        {
-            name: "Cloud Architecture",
-            icon: "☁️",
-            description: "Designing scalable systems",
-        },
-        {
             name: "Automation",
-            icon: "🤖",
-            description: "If it can be automated, it should be",
+            icon: "⚡",
+            description: "If it's manual, it can be automated",
         },
         {
-            name: "Learning",
-            icon: "📚",
-            description: "Always exploring new technologies",
+            name: "Innovation",
+            icon: "🔬",
+            description: "Finding new ways to solve old problems",
+        },
+        {
+            name: "Problem-Solving",
+            icon: "🧠",
+            description: "Debugging code and life puzzles",
+        },
+        {
+            name: "Second Breakfast",
+            icon: "🍳",
+            description: "And elevenses, when debugging",
         },
     ];
 
     // Fun facts or stats
     const stats = [
-        { label: "Lines of Code", value: "100K+", suffix: "written" },
-        { label: "AWS Services", value: "30+", suffix: "used" },
-        { label: "Deployments", value: "1000+", suffix: "automated" },
-        { label: "Coffee Cups", value: "∞", suffix: "consumed" },
+        { label: "Years Experience", value: "5+", suffix: "in tech" },
+        { label: "Global Teams", value: "50k+", suffix: "restaurants supported" },
+        { label: "Tools Built", value: "25+", suffix: "automation solutions" },
+        { label: "Incidents", value: "100s", suffix: "resolved" },
     ];
 
     $effect(() => {
@@ -121,7 +121,7 @@
                             </div>
                             <!-- Decorative elements -->
                             <div
-                                class="absolute -top-4 -right-4 w-24 h-24 bg-accent-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity"
+                                class="absolute -top-4 -right-4 w-24 h-24 bg-secondary-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity"
                             ></div>
                             <div
                                 class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity"
@@ -136,18 +136,18 @@
                         </h2>
                         <div class="space-y-4 text-gray-300 leading-relaxed">
                             <p>
-                                I'm a <span class="text-primary-300 font-semibold">Platform Engineer</span> focused on building scalable systems and developer-first tooling. At Yum! Brands, I'm one of three engineers behind our Internal Developer Portal (IDP), where I use <span class="text-secondary-300 font-semibold">Go and Temporal</span> to automate everything from infrastructure scaffolding to workflow orchestration. My toolkit includes <span class="text-accent-300 font-semibold">Terraform, Terragrunt, AWS</span>, and a problem-solving mindset that values clarity, consistency, and speed.
+                                I'm a <span class="text-primary-300 font-semibold">Platform Engineer</span> at Yum! Brands, where I'm one of three engineers building our Internal Developer Portal. I specialize in <span class="text-secondary-300 font-semibold">workflow automation</span> using Go and Temporal, creating tools that empower developers across our global organization.
                             </p>
                             <p>
-                                My path into tech wasn't traditional. I started on the Taco Bell service desk—where I learned firsthand how broken systems and bad code ripple down to frontline teams. That experience shaped my entire engineering philosophy. From there, I moved into reliability engineering, then became the go-to for automation across Yum's global platforms. I've built monitoring systems, production tools, and internal platforms that have empowered teams around the world. Before all that, I ran a construction company—so building things that don't fall apart is kind of my thing.
+                                My engineering philosophy was shaped by starting on the service desk—I've seen firsthand how bad code impacts real people. This drives me to build <span class="text-secondary-300 font-semibold">reliable, scalable systems</span> that just work. From Terraform infrastructure to monitoring dashboards, I focus on solutions that reduce operational burden.
                             </p>
                             <p>
-                                Outside of work, I'm into <span class="text-primary-300 font-semibold">Magic: The Gathering</span> (Commander all day), skateboarding, board games, and catching a quiet moment with a fishing rod when I can. I like finding clever solutions, whether it's fixing legacy code or breaking down someone's busted MTG combo. My philosophy? <span class="text-accent-300 font-semibold">Be curious, not judgmental.</span> It keeps things fun, keeps me learning, and helps me build tools that make other people's lives easier.
+                                Currently, I'm working on automating infrastructure provisioning, building self-service developer tools, and implementing Temporal workflows for complex orchestration. My approach: <span class="text-primary-300 font-semibold">be curious, not judgmental</span>—it's how I tackle legacy systems and find elegant solutions to complex problems.
                             </p>
                         </div>
 
                         <!-- Quick stats -->
-                        <div class="grid grid-cols-2 gap-4 pt-4">
+                        <!-- <div class="grid grid-cols-2 gap-4 pt-4">
                             {#each stats as stat, i}
                                 <div
                                     class="text-center p-4 rounded-lg bg-primary-500 bg-opacity-10 border border-primary-500 border-opacity-20"
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                             {/each}
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                 <div class="relative">
                     <!-- Timeline line -->
                     <div
-                        class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-secondary-500 to-accent-500 opacity-30"
+                        class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-secondary-500 to-primary-400 opacity-30"
                     ></div>
 
                     <!-- Timeline items -->
@@ -193,7 +193,7 @@
                             >
                                 <!-- Icon -->
                                 <div
-                                    class="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-gray-900 border-2 border-primary-500 group-hover:border-accent-500 transition-colors"
+                                    class="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-gray-900 border-2 border-primary-500 group-hover:border-secondary-400 transition-colors"
                                 >
                                     <span class="text-2xl">{item.icon}</span>
                                 </div>

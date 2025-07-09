@@ -518,7 +518,7 @@
                                                 class="text-sm text-gray-300 flex items-start"
                                             >
                                                 <svg
-                                                    class="w-4 h-4 text-accent-400 mr-2 mt-0.5 flex-shrink-0"
+                                                    class="w-4 h-4 text-secondary-400 mr-2 mt-0.5 flex-shrink-0"
                                                     fill="currentColor"
                                                     viewBox="0 0 20 20"
                                                 >
@@ -623,7 +623,7 @@
                                     {#each resumeData.certifications as cert}
                                         <div class="flex items-start space-x-4">
                                             <div
-                                                class="flex-shrink-0 w-2 h-2 bg-accent-400 rounded-full mt-2"
+                                                class="flex-shrink-0 w-2 h-2 bg-secondary-400 rounded-full mt-2"
                                             ></div>
                                             <div class="flex-grow">
                                                 <h5

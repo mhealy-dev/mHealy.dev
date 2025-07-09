@@ -119,7 +119,7 @@
 							{#each skill.useCases as useCase, index}
 								<li class="text-sm text-gray-300 flex items-start transition-all duration-300 transform {expandedSkill === skill.name ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}"
 								    style="transition-delay: {index * 50}ms">
-									<span class="text-accent-400 mr-2 mt-1">▸</span>
+									<span class="text-secondary-400 mr-2 mt-1">▸</span>
 									<span>{useCase}</span>
 								</li>
 							{/each}

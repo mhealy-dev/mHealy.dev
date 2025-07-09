@@ -230,7 +230,7 @@
 			{:else}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{#each filteredProjects as project, i}
-						<div class="group card p-0 overflow-hidden hover:transform hover:scale-105 transition-all duration-500 {project.featured ? 'ring-2 ring-accent-500 ring-opacity-30' : ''}"
+						<div class="group card p-0 overflow-hidden hover:transform hover:scale-105 transition-all duration-500 {project.featured ? 'ring-2 ring-secondary-500 ring-opacity-30' : ''}"
 						     style="animation: fadeIn 0.5s ease-out {mounted ? i * 0.1 : 0}s both">
 							
 							<!-- Project Image -->
@@ -255,7 +255,7 @@
 								<!-- Featured Badge -->
 								{#if project.featured}
 									<div class="absolute top-4 left-4">
-										<span class="px-2 py-1 text-xs rounded-full bg-accent-500 bg-opacity-20 text-accent-400 border border-accent-500 border-opacity-30">
+										<span class="px-2 py-1 text-xs rounded-full bg-secondary-500 bg-opacity-20 text-secondary-400 border border-secondary-500 border-opacity-30">
 											Featured
 										</span>
 									</div>
@@ -295,7 +295,7 @@
 									<ul class="space-y-1">
 										{#each project.highlights.slice(0, 2) as highlight}
 											<li class="text-xs text-gray-400 flex items-start">
-												<svg class="w-3 h-3 text-accent-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+												<svg class="w-3 h-3 text-secondary-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 													<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 												</svg>
 												<span>{highlight}</span>

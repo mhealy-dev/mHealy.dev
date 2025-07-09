@@ -319,7 +319,7 @@ ${formData.message}
 									Sending...
 								{:else}
 									<span class="relative z-10">Send Message</span>
-									<div class="absolute inset-0 bg-gradient-to-r from-accent-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+									<div class="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
 								{/if}
 							</button>
 							
@@ -356,25 +356,25 @@ ${formData.message}
 							<h3 class="text-xl font-semibold text-primary-200 mb-4">What to Expect</h3>
 							<ul class="space-y-3">
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Initial consultation call</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Detailed project proposal</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Timeline and milestone planning</span>
 								</li>
 								<li class="flex items-start">
-									<svg class="w-5 h-5 text-accent-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+									<svg class="w-5 h-5 text-secondary-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
 									</svg>
 									<span class="text-sm text-gray-300">Regular progress updates</span>
