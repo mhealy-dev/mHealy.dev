@@ -4,6 +4,9 @@
 	import { browser } from '$app/environment';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	
+	// Svelte 5 children prop
+	let { children } = $props();
 
 	// Track previous URL to detect navigation
 	let previousUrl = $state('');
@@ -24,7 +27,7 @@
 	<Navigation />
 	
 	<main class="flex-grow">
-		<slot />
+		{@render children()}
 	</main>
 	
 	<Footer />
