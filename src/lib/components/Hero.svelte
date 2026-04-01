@@ -1,137 +1,91 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { browser } from '$app/environment';
+	import { browser } from '$app/environment';
+	import { profile } from '$lib/data/profile';
 
-    let typedText = "";
-    const roles = ["Platform Engineer", "Problem Solver", "Tech Enthusiast"];
-    let currentRole = 0;
-    let isDeleting = false;
-    let scrollY = 0;
-    $: showScrollIndicator = scrollY < 50; // Show when at top, hide when scrolled down
+	let typedText = $state('');
+	let scrollY = $state(0);
+	let showScrollIndicator = $derived(scrollY < 80);
 
-    onMount(() => {
-        if (!browser) return;
+	$effect(() => {
+		if (!browser) return;
 
-        const typeSpeed = 100;
-        const deleteSpeed = 50;
-        const pauseTime = 2000;
-        let timeoutId: ReturnType<typeof setTimeout>;
+		const typeSpeed = 90;
+		const deleteSpeed = 45;
+		const pauseTime = 2200;
+		let timeoutId: ReturnType<typeof setTimeout>;
+		// Local non-reactive state — lives inside the effect, never triggers re-runs
+		let roleIndex = 0;
+		let charIndex = 0;
+		let deleting = false;
 
-        function typeWriter() {
-            const currentText = roles[currentRole];
+		function tick() {
+			const currentText = profile.roles[roleIndex];
+			if (!deleting) {
+				charIndex++;
+				typedText = currentText.substring(0, charIndex);
+				if (charIndex === currentText.length) {
+					timeoutId = setTimeout(() => { deleting = true; tick(); }, pauseTime);
+					return;
+				}
+			} else {
+				charIndex--;
+				typedText = currentText.substring(0, charIndex);
+				if (charIndex === 0) {
+					deleting = false;
+					roleIndex = (roleIndex + 1) % profile.roles.length;
+				}
+			}
+			timeoutId = setTimeout(tick, deleting ? deleteSpeed : typeSpeed);
+		}
 
-            if (!isDeleting) {
-                typedText = currentText.substring(0, typedText.length + 1);
+		tick();
 
-                if (typedText === currentText) {
-                    timeoutId = setTimeout(() => {
-                        isDeleting = true;
-                        typeWriter();
-                    }, pauseTime);
-                    return;
-                }
-            } else {
-                typedText = currentText.substring(0, typedText.length - 1);
+		const handleScroll = () => { scrollY = window.scrollY; };
+		window.addEventListener('scroll', handleScroll, { passive: true });
 
-                if (typedText === "") {
-                    isDeleting = false;
-                    currentRole = (currentRole + 1) % roles.length;
-                }
-            }
-
-            timeoutId = setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
-        }
-
-        typeWriter();
-
-        // Handle scroll indicator visibility
-        const handleScroll = () => {
-            scrollY = window.scrollY;
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            clearTimeout(timeoutId);
-            window.removeEventListener('scroll', handleScroll);
-        };
-    });
+		return () => {
+			clearTimeout(timeoutId);
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
 </script>
 
-<section
-    class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
->
-    <!-- Animated background grid -->
-    <div class="absolute inset-0 grid-background opacity-20"></div>
+<section class="min-h-screen flex flex-col justify-center pt-16 relative">
+	<div class="section-container w-full">
+		<div class="max-w-3xl animate-fade-up">
 
-    <!-- Floating particles effect -->
-    <div class="absolute inset-0">
-        <div
-            class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500 bg-opacity-20 rounded-full blur-3xl animate-pulse"
-        ></div>
-        <div
-            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-500 bg-opacity-20 rounded-full blur-3xl animate-pulse"
-            style="animation-delay: 1s"
-        ></div>
-        <div
-            class="absolute top-1/2 left-1/2 w-80 h-80 bg-primary-400 bg-opacity-10 rounded-full blur-3xl animate-pulse"
-            style="animation-delay: 2s"
-        ></div>
-    </div>
+			<!-- Name -->
+			<h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-6" style="letter-spacing: -0.03em; line-height: 1.0;">
+				{profile.name}
+			</h1>
 
-    <div class="section-container text-center relative z-10">
-        <div class="animate-fade-in">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                Hi, I'm <span class="gradient-text"
-                    >Michael Healy</span
-                >
-            </h1>
+			<!-- Typewriter role -->
+			<div class="flex items-center gap-2 mb-8 h-10">
+				<span class="text-xl sm:text-2xl font-mono text-ink-300">{typedText}</span>
+				<span class="w-0.5 h-6 bg-accent-500 animate-pulse inline-block"></span>
+			</div>
 
-            <div
-                class="text-2xl md:text-4xl text-primary-200 mb-8 h-12 font-mono"
-            >
-                <span class="gradient-text-subtle">{typedText}</span>
-                <span class="animate-pulse text-secondary-400">_</span>
-            </div>
+			<!-- Tagline -->
+			<p class="text-lg sm:text-xl text-ink-300 max-w-xl leading-relaxed mb-12">
+				{profile.tagline}
+			</p>
 
-            <p
-                class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed"
-            >
-                Crafting digital experiences at the intersection of
-                <span class="text-primary-300">creativity</span> and
-                <span class="text-secondary-300">technology</span>
-            </p>
+			<!-- CTAs -->
+			<div class="flex flex-wrap gap-3">
+				<a href="#experience" class="btn btn-primary">View Experience</a>
+				<a href="#contact" class="btn btn-outline">Get In Touch</a>
+				<a href="/resume" class="btn btn-outline">Resume ↗</a>
+			</div>
+		</div>
+	</div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/projects" class="btn btn-primary group">
-                    <span class="relative z-10">View My Projects</span>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-                    ></div>
-                </a>
-                <a href="/contact" class="btn btn-outline"> Get In Touch </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    {#if showScrollIndicator}
-        <div
-            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-10 transition-opacity duration-300"
-        >
-            <svg
-                class="w-6 h-6 text-primary-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="3"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-            </svg>
-        </div>
-    {/if}
+	<!-- Scroll indicator -->
+	{#if showScrollIndicator}
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink-500 animate-fade-in" style="animation-delay: 1s">
+			<span class="text-xs font-mono tracking-widest uppercase">Scroll</span>
+			<svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+			</svg>
+		</div>
+	{/if}
 </section>
