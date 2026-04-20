@@ -86,19 +86,75 @@ export const skills: SkillEntry[] = [
 			'Implemented automated testing pipelines',
 			'Built blue-green deployment strategies'
 		]
+	},
+	{
+		name: 'GraphQL',
+		category: 'Backend',
+		useCases: [
+			'Designed and consumed GraphQL APIs',
+			'Built schema-first services with type-safe resolvers',
+			'Integrated GraphQL clients in full-stack applications'
+		]
+	},
+	{
+		name: 'SQL',
+		category: 'Backend',
+		useCases: [
+			'Wrote complex queries for reporting and analytics',
+			'Designed relational schemas for application data',
+			'Optimized queries and managed migrations'
+		]
+	},
+	{
+		name: 'OpenTofu',
+		category: 'Infrastructure',
+		useCases: [
+			'Managed infrastructure as code with the open-source Terraform fork',
+			'Migrated existing Terraform state to OpenTofu',
+			'Leveraged community modules and providers'
+		]
+	},
+	{
+		name: 'CDK',
+		category: 'Infrastructure',
+		useCases: [
+			'Defined AWS infrastructure using TypeScript constructs',
+			'Built reusable L3 constructs for internal platform patterns',
+			'Deployed and managed CloudFormation stacks via CDK pipelines'
+		]
+	},
+	{
+		name: 'Node.js',
+		category: 'Backend',
+		useCases: [
+			'Built REST APIs and backend services',
+			'Created automation scripts and tooling',
+			'Developed serverless Lambda functions'
+		]
+	},
+	{
+		name: 'Svelte',
+		category: 'Frontend',
+		useCases: [
+			'Built performant web applications with Svelte 5 and SvelteKit',
+			'Implemented reactive UI with runes-based state management',
+			'Deployed full-stack apps with SvelteKit adapters'
+		]
 	}
 ];
 
 // Grouped skill strings — used by the resume page display and PDF generation
 // Note: these are more verbose than the grid names (e.g. "AWS (Lambda, EC2...)")
 export const skillGroups: Record<string, string[]> = {
-	Languages: ['Go', 'Python', 'JavaScript (React, Node.js)', 'HTML/CSS', 'SQL'],
+	Languages: ['Go', 'Python', 'JavaScript', 'TypeScript', 'Node.js', 'SQL', 'HTML/CSS'],
 	'Cloud & Infrastructure': [
 		'AWS (Lambda, EC2, DynamoDB, S3, SQS, CloudWatch, CloudFormation, KMS)',
 		'Terraform',
+		'OpenTofu',
 		'Terragrunt',
+		'CDK',
 		'Serverless Framework'
 	],
-	'Tools & Platforms': ['Git', 'Docker', 'Retool', 'DataDog', 'Android/iOS App Development (Expo)'],
-	Databases: ['MySQL', 'DynamoDB', 'Parameter Store']
+	'Tools & Platforms': ['Git', 'Docker', 'Retool', 'DataDog', 'Svelte/SvelteKit', 'GraphQL'],
+	Databases: ['MySQL', 'DynamoDB', 'PostgreSQL', 'Parameter Store']
 };
