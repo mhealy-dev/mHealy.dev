@@ -3,42 +3,31 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      // Semantic tokens backed by CSS variables — see src/app.css for
+      // the light/dark values. RGB triplets so Tailwind alpha works.
       colors: {
-        // Near-black editorial backgrounds
-        ink: {
-          950: '#080808',
-          900: '#0f0f0f',
-          800: '#161616',
-          700: '#1e1e1e',
-          600: '#2a2a2a',
-          500: '#3a3a3a',
-          400: '#525252',
-          300: '#8a8a8a',
-          200: '#b0b0b0',
-          100: '#d8d8d8',
-          50:  '#f5f5f5',
-        },
-        // Single restrained blue accent
-        accent: {
-          50:  '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#4f8ef7',
-          600: '#3b82f6',
-          700: '#2563eb',
-          800: '#1d4ed8',
-          900: '#1e3a8a',
-        },
+        bg:            'rgb(var(--c-bg) / <alpha-value>)',
+        surface:       'rgb(var(--c-surface) / <alpha-value>)',
+        raised:        'rgb(var(--c-raised) / <alpha-value>)',
+        line:          'rgb(var(--c-line) / <alpha-value>)',
+        'line-strong': 'rgb(var(--c-line-strong) / <alpha-value>)',
+        fg:            'rgb(var(--c-fg) / <alpha-value>)',
+        muted:         'rgb(var(--c-muted) / <alpha-value>)',
+        subtle:        'rgb(var(--c-subtle) / <alpha-value>)',
+        faint:         'rgb(var(--c-faint) / <alpha-value>)',
+        accent:        'rgb(var(--c-accent) / <alpha-value>)',
+        'accent-hover':'rgb(var(--c-accent-hover) / <alpha-value>)',
+        'on-accent':   'rgb(var(--c-on-accent) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        display: ['"Cabinet Grotesk"', 'system-ui', 'sans-serif'],
+        sans: ['Switzer', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       animation: {
         'fade-up': 'fadeUp 0.5s ease-out both',
         'fade-in': 'fadeIn 0.4s ease-out both',
+        'pulse-dot': 'pulseDot 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         fadeUp: {
@@ -48,6 +37,10 @@ export default {
         fadeIn: {
           '0%':   { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        pulseDot: {
+          '0%, 100%': { opacity: '1' },
+          '50%':      { opacity: '0.35' },
         },
       },
     },

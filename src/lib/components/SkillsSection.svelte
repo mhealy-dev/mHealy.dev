@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { skills } from '$lib/data/skills';
+	import { reveal } from '$lib/actions/reveal';
 
 	let expandedSkill = $state<string | null>(null);
 
@@ -12,35 +13,35 @@
 
 <section id="skills" class="py-24">
 	<div class="section-container">
-		<div class="section-rule"></div>
+		<div class="hairline mb-14"></div>
 
-		<div class="grid md:grid-cols-[1fr_2fr] gap-16 items-start">
+		<div class="grid md:grid-cols-[1fr_2fr] gap-x-16 gap-y-10 items-start">
 			<!-- Left -->
-			<div class="md:sticky md:top-24">
-				<p class="section-label">Skills</p>
-				<h2 class="text-3xl font-bold text-white mb-4" style="letter-spacing: -0.02em;">
+			<div class="md:sticky md:top-24 reveal" use:reveal>
+				<p class="eyebrow mb-4"><span class="index">03</span> Skills</p>
+				<h2 class="font-display font-bold text-4xl text-fg mb-4" style="letter-spacing: -0.02em;">
 					Technologies
 				</h2>
-				<p class="text-ink-400 text-sm leading-relaxed">
-					Click any skill to see how I've applied it.
+				<p class="text-subtle text-sm leading-relaxed">
+					Select any skill to see how I've applied it.
 				</p>
 			</div>
 
-			<!-- Right: grouped skill cards -->
-			<div class="space-y-8">
-				{#each Object.entries(grouped) as [category, categorySkills]}
-					<div>
-						<h3 class="text-xs font-semibold text-ink-400 uppercase tracking-widest mb-3 font-mono">
+			<!-- Right: grouped skill tags -->
+			<div class="space-y-10">
+				{#each Object.entries(grouped) as [category, categorySkills], gi}
+					<div class="reveal" use:reveal={{ delay: gi * 80 }}>
+						<h3 class="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle mb-3">
 							{category}
 						</h3>
 						<div class="flex flex-wrap gap-2">
 							{#each categorySkills as skill}
 								<button
 									onclick={() => expandedSkill = expandedSkill === skill.name ? null : skill.name}
-									class="tag cursor-pointer transition-all duration-200 hover:border-accent-700 hover:text-white"
-									class:border-accent-600={expandedSkill === skill.name}
-									class:text-accent-400={expandedSkill === skill.name}
-									style={expandedSkill === skill.name ? 'background-color: rgba(37,99,235,0.08);' : ''}
+									class="tag cursor-pointer transition-colors duration-150 hover:text-fg hover:border-line-strong"
+									class:!border-accent={expandedSkill === skill.name}
+									class:!text-accent={expandedSkill === skill.name}
+									aria-expanded={expandedSkill === skill.name}
 								>
 									{skill.name}
 								</button>
@@ -50,12 +51,14 @@
 						<!-- Expanded detail panel -->
 						{#each categorySkills as skill}
 							{#if expandedSkill === skill.name}
-								<div class="mt-3 p-4 rounded-lg border animate-fade-up" style="border-color: #1e1e1e; background-color: #111111;">
-									<p class="text-xs text-ink-400 uppercase tracking-widest font-mono mb-3">{skill.name} — Experience</p>
+								<div class="mt-3 p-5 border border-line bg-surface/60 animate-fade-up" style="animation-duration: 0.3s">
+									<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle mb-3">
+										{skill.name} — In practice
+									</p>
 									<ul class="space-y-2">
 										{#each skill.useCases as useCase}
-											<li class="text-sm text-ink-200 flex items-start gap-3">
-												<span class="text-accent-500 flex-shrink-0 mt-0.5">—</span>
+											<li class="text-sm text-muted flex items-start gap-3">
+												<span class="text-accent flex-shrink-0 mt-0.5">—</span>
 												<span>{useCase}</span>
 											</li>
 										{/each}
