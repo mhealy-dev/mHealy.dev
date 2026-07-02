@@ -18,24 +18,32 @@
 	let query = $state('');
 	let activeIndex = $state(0);
 	let copied = $state(false);
-	let inputEl = $state<HTMLInputElement | null>(null);
 	let listEl = $state<HTMLElement | null>(null);
 
-	// goto() alone can't handle same-page hash targets, and the palette's
-	// scroll lock must be released before any scrolling — see execute().
+	// Focus synchronously on mount — a rAF-deferred focus can lose the
+	// user's first keystrokes if the browser is busy (e.g. mid smooth-scroll)
+	function autofocus(node: HTMLInputElement) {
+		node.focus();
+	}
+
+	// goto() with the full path keeps the URL (including hash) correct.
+	// noScroll + manual scrollIntoView handles the cases goto won't:
+	// re-selecting the section already in the URL, and smooth scrolling.
+	// The palette's scroll lock must be released first — see execute().
 	async function navigate(path: string) {
-		const [route, hash] = path.split('#');
-		const target = route || '/';
-		if (window.location.pathname !== target) {
-			await goto(target);
-		}
-		if (hash) {
+		const hash = path.split('#')[1];
+		await goto(path, { noScroll: true });
+		// Double rAF: SvelteKit applies its own (noScroll) scroll restoration
+		// in the frame after goto resolves; scrolling before that gets undone.
+		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
-				document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+				if (hash) {
+					document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+				} else {
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				}
 			});
-		} else {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		}
+		});
 	}
 
 	const commands: Command[] = [
@@ -139,13 +147,12 @@
 		});
 	}
 
-	// Reset + focus when opened; clamp selection when the list refilters
+	// Reset state when opened; clamp selection when the list refilters
 	$effect(() => {
 		if (palette.open) {
 			query = '';
 			activeIndex = 0;
 			copied = false;
-			requestAnimationFrame(() => inputEl?.focus());
 		}
 	});
 
@@ -188,7 +195,7 @@
 			<div class="flex items-center gap-3 px-4 border-b border-line">
 				<span class="font-mono text-accent text-sm select-none" aria-hidden="true">&gt;</span>
 				<input
-					bind:this={inputEl}
+					use:autofocus
 					bind:value={query}
 					type="text"
 					placeholder="Type a command or search…"
