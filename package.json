@@ -42,9 +42,6 @@
     "wrangler": "^4.23.0"
   },
   "dependencies": {
-    "@sveltejs/adapter-static": "^3.0.8",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.1",
-    "puppeteer": "^24.11.2"
+    "jspdf": "^3.0.1"
   }
 }
