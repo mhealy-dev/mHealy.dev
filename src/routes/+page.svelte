@@ -8,10 +8,10 @@
 </script>
 
 <svelte:head>
-	<title>Michael Healy — Platform Engineer</title>
+	<title>Michael Healy | Staff Solutions Architect</title>
 	<meta
 		name="description"
-		content="Platform Engineer specializing in automation, cloud infrastructure, and internal developer platforms. Based in New Zealand."
+		content="Staff Solutions Architect at Pizza Hut, setting org-wide technical standards and leveraging AI to help engineering teams do more. Based in New Zealand."
 	/>
 </svelte:head>
 

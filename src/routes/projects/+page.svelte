@@ -24,8 +24,8 @@
 </script>
 
 <svelte:head>
-	<title>Projects — Michael Healy</title>
-	<meta name="description" content="Portfolio of projects by Michael Healy — Platform Engineer" />
+	<title>Projects | Michael Healy</title>
+	<meta name="description" content="Portfolio of projects by Michael Healy, Staff Solutions Architect" />
 </svelte:head>
 
 <div class="min-h-screen pt-16 pb-16">
@@ -38,7 +38,7 @@
 				Projects<span class="text-accent">.</span>
 			</h1>
 			<p class="text-muted max-w-xl leading-relaxed">
-				Real-world solutions in platform engineering, infrastructure automation, and full-stack development.
+				Real-world work in solutions architecture, platform engineering, and infrastructure automation.
 			</p>
 		</header>
 

@@ -29,12 +29,25 @@ export interface Certification {
 
 export const experience: ExperienceEntry[] = [
 	{
+		id: 'pizzahut-staff-sa',
+		title: 'Staff Solutions Architect',
+		company: 'Pizza Hut',
+		location: 'New Zealand (Remote)',
+		period: 'JUN 2026 – PRESENT',
+		current: true,
+		highlights: [
+			'Staff Solutions Architect on the DevX team, setting org-wide technical standards and architectural direction',
+			'Leveraging AI to empower engineers to do more, evaluating and rolling out AI-assisted tooling and practices across teams',
+			'Partnering with engineering and product leadership to align technical decisions with long-term architecture strategy'
+		]
+	},
+	{
 		id: 'yum-platform',
 		title: 'Platform Engineer',
 		company: 'YUM! Brands',
 		location: 'Chicago',
-		period: 'FEB 2025 – PRESENT',
-		current: true,
+		period: 'FEB 2025 – MAY 2026',
+		current: false,
 		highlights: [
 			'One of three engineers building the Internal Developer Portal (IDP) on the Byte team',
 			'Designing and implementing Temporal workflows for complex infrastructure orchestration',
@@ -143,6 +156,13 @@ export const timeline: TimelineEntry[] = [
 		description:
 			'Transitioned to one of three Platform Engineers on the Byte team, focused on internal developer platform and Temporal workflows.',
 		icon: '🚀'
+	},
+	{
+		year: '2026',
+		title: 'Staff Solutions Architect',
+		description:
+			'Moved to Pizza Hut as a Staff Solutions Architect on the DevX team, setting org-wide technical standards and driving AI-enabled engineering practices.',
+		icon: '🧭'
 	}
 ];
 

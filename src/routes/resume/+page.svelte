@@ -11,8 +11,8 @@
 </script>
 
 <svelte:head>
-	<title>Resume — Michael Healy</title>
-	<meta name="description" content="Resume of Michael Healy — Platform Engineer specializing in cloud infrastructure and DevOps" />
+	<title>Resume | Michael Healy</title>
+	<meta name="description" content="Resume of Michael Healy, Staff Solutions Architect" />
 </svelte:head>
 
 <div class="min-h-screen pt-16 pb-16">

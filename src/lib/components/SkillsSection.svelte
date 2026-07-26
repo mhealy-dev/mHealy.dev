@@ -53,7 +53,7 @@
 							{#if expandedSkill === skill.name}
 								<div class="mt-3 p-5 border border-line bg-surface/60 animate-fade-up" style="animation-duration: 0.3s">
 									<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle mb-3">
-										{skill.name} — In practice
+										{skill.name}: In practice
 									</p>
 									<ul class="space-y-2">
 										{#each skill.useCases as useCase}
