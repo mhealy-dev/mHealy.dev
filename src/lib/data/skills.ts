@@ -7,6 +7,24 @@ export interface SkillEntry {
 // Flat skill entries — used by the interactive skills grid on the homepage
 export const skills: SkillEntry[] = [
 	{
+		name: 'Solutions Architecture',
+		category: 'Architecture',
+		useCases: [
+			'Set org-wide technical standards and architectural direction',
+			'Authored architecture decisions guiding cross-team technical choices',
+			'Aligned technical strategy with engineering and product leadership'
+		]
+	},
+	{
+		name: 'AI-Assisted Engineering',
+		category: 'Architecture',
+		useCases: [
+			'Evaluated and rolled out AI-assisted tooling and practices across engineering teams',
+			'Established standards for responsible, effective AI-assisted development',
+			'Leveraged AI to help engineers do more without adding friction'
+		]
+	},
+	{
 		name: 'Go',
 		category: 'Backend',
 		useCases: [
@@ -146,6 +164,12 @@ export const skills: SkillEntry[] = [
 // Grouped skill strings — used by the resume page display and PDF generation
 // Note: these are more verbose than the grid names (e.g. "AWS (Lambda, EC2...)")
 export const skillGroups: Record<string, string[]> = {
+	'Architecture & Strategy': [
+		'Solutions Architecture',
+		'Technical Standards & Direction',
+		'AI-Assisted Engineering',
+		'Cross-Team Technical Strategy'
+	],
 	Languages: ['Go', 'Python', 'JavaScript', 'TypeScript', 'Node.js', 'SQL', 'HTML/CSS'],
 	'Cloud & Infrastructure': [
 		'AWS (Lambda, EC2, DynamoDB, S3, SQS, CloudWatch, CloudFormation, KMS)',

@@ -4,7 +4,13 @@ export interface ProjectLinks {
 	caseStudy: string | null;
 }
 
-export type ProjectCategory = 'Infrastructure' | 'Full Stack' | 'DevOps' | 'Backend' | 'Monitoring';
+export type ProjectCategory =
+	| 'Architecture'
+	| 'Infrastructure'
+	| 'Full Stack'
+	| 'DevOps'
+	| 'Backend'
+	| 'Monitoring';
 export type ProjectStatus = 'Production' | 'Development';
 
 export interface Project {
@@ -21,6 +27,23 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+	{
+		id: 7,
+		title: 'Org-Wide Technical Standards & AI-Enabled Engineering',
+		description:
+			'Setting technical standards and architectural direction for the DevX team at Pizza Hut, with a focus on leveraging AI to help engineering teams do more.',
+		technologies: ['Solutions Architecture', 'AI-Assisted Engineering', 'Technical Standards'],
+		category: 'Architecture',
+		featured: true,
+		status: 'Development',
+		year: '2026',
+		highlights: [
+			'Defining org-wide technical standards and architectural direction',
+			'Evaluating and rolling out AI-assisted tooling and practices across engineering teams',
+			'Aligning technical decisions with engineering and product leadership'
+		],
+		links: { demo: null, github: null, caseStudy: null }
+	},
 	{
 		id: 1,
 		title: 'YUM! Brands Global Infrastructure',

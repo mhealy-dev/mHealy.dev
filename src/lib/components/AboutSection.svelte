@@ -12,7 +12,7 @@
 			<div class="reveal" use:reveal>
 				<p class="eyebrow mb-4"><span class="index">01</span> About</p>
 				<h2 class="font-display font-bold text-4xl text-fg mb-8" style="letter-spacing: -0.02em; line-height: 1.05;">
-					Platform Engineer.<br />Automation first.
+					Solutions Architect.<br />Standards first.
 				</h2>
 				<div class="flex flex-col gap-2 font-mono text-xs">
 					<a href={profile.contact.githubUrl} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-fg transition-colors">GitHub ↗</a>
@@ -30,7 +30,7 @@
 
 				<blockquote class="reveal mt-10 pl-5 border-l-2 border-accent" use:reveal={{ delay: 280 }}>
 					<p class="font-display text-xl sm:text-2xl text-fg leading-snug" style="letter-spacing: -0.01em;">
-						“{profile.philosophy}”
+						{profile.philosophy}
 					</p>
 				</blockquote>
 			</div>

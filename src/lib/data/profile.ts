@@ -20,18 +20,18 @@ export interface Profile {
 
 export const profile: Profile = {
 	name: 'Michael Healy',
-	title: 'Platform Engineer',
-	roles: ['Platform Engineer', 'Automation Engineer', 'Problem Solver'],
-	tagline: 'Building the invisible infrastructure that powers modern software.',
+	title: 'Staff Solutions Architect',
+	roles: ['Staff Solutions Architect', 'Technical Strategy', 'AI-Enabled Engineering'],
+	tagline: 'Setting the technical direction other engineers build on.',
 	summary:
-		'Platform Engineer with expertise in automation, cloud infrastructure, and full-stack development. Specialized in building scalable solutions using Go, Python, and Infrastructure as Code practices. Proven track record of improving operational efficiency and implementing innovative solutions across global technology stacks.',
+		'Staff Solutions Architect at Pizza Hut, setting org-wide technical standards and architectural direction while leveraging AI to help engineering teams do more. Grounded in a decade of hands-on platform engineering, automation, and cloud infrastructure work across Yum! Brands.',
 	bio: [
-		"I'm a Platform Engineer at Yum! Brands, where I'm one of three engineers building our Internal Developer Portal. I specialize in workflow automation using Go and Temporal, creating tools that empower developers across our global organization.",
-		"My engineering philosophy was shaped by starting on the service desk — I've seen firsthand how bad code impacts real people. This drives me to build reliable, scalable systems that just work. From Terraform infrastructure to monitoring dashboards, I focus on solutions that reduce operational burden.",
-		'Currently working on automating infrastructure provisioning, building self-service developer tools, and implementing Temporal workflows for complex orchestration. My approach: be curious, not judgmental — it\'s how I tackle legacy systems and find elegant solutions to complex problems.'
+		"I'm a Staff Solutions Architect at Pizza Hut, where I help set org-wide technical standards and architectural direction. A big part of that is leveraging AI to empower engineers to do more: evaluating and rolling out AI-assisted tooling and practices that raise the bar without adding friction.",
+		"My engineering philosophy was shaped by starting on the service desk, where I saw firsthand how bad decisions upstream become real pain for the people downstream. That's what pulled me toward architecture: influencing the standards and decisions before they become someone else's incident. From there I spent years as a Platform Engineer at Yum! Brands building an Internal Developer Portal with Go and Temporal, which shaped how I think about good technical direction.",
+		"My approach: be curious, not judgmental. It's how I work through legacy systems, align stakeholders who don't naturally agree, and find the simplest technical direction that a whole organization can actually adopt."
 	],
 	philosophy:
-		'The best infrastructure is invisible to those who use it, yet empowers them to build amazing things.',
+		'Good architecture is a standard so well-designed that engineers follow it without thinking, paired with AI tooling that makes doing the right thing the fast thing.',
 	contact: {
 		email: 'mhealy.dev@gmail.com',
 		location: 'New Zealand',

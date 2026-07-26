@@ -49,7 +49,7 @@
 			<span style="--line-delay: 500ms">
 				<p class="flex items-center gap-2.5 font-mono text-xs tracking-wide text-muted">
 					<span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot flex-shrink-0"></span>
-					Currently — Internal Developer Portal @ Yum! Brands
+					Currently: Staff Solutions Architect @ Pizza Hut
 				</p>
 			</span>
 		</div>
@@ -73,9 +73,7 @@
 
 	<!-- Bottom meta bar -->
 	<div class="section-container w-full pb-6">
-		<div class="hairline pt-4 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-subtle animate-fade-in" style="animation-delay: 900ms">
-			<span>{profile.contact.location}</span>
-			<span class="hidden sm:inline">Platform · Automation · Infrastructure</span>
+		<div class="hairline pt-4 flex items-center justify-center font-mono text-[11px] uppercase tracking-[0.2em] text-subtle animate-fade-in" style="animation-delay: 900ms">
 			{#if showScrollIndicator}
 				<span class="flex items-center gap-2">
 					Scroll
